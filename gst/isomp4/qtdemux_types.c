@@ -184,6 +184,7 @@ static const QtNodeType qt_node_types[] = {
   {FOURCC_ovc1, "ovc1", 0},
   {FOURCC_owma, "owma", 0},
   {FOURCC_avcC, "AV codec configuration container", 0},
+  {FOURCC_cwi1, "CWI pointcloud compression", 0},
   {FOURCC_avc1, "AV codec configuration v1", 0},
   {FOURCC_avc3, "AV codec configuration v3", 0},
   {FOURCC_mp4s, "VOBSUB codec configuration", 0},

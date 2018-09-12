@@ -7473,6 +7473,7 @@ qtdemux_parse_node (GstQTDemux * qtdemux, GNode * node, const guint8 * buffer,
       case FOURCC_xvid:
       case FOURCC_XVID:
       case FOURCC_H264:
+      case FOURCC_cwi1:
       case FOURCC_avc1:
       case FOURCC_avc3:
       case FOURCC_H265:
@@ -10217,6 +10218,7 @@ qtdemux_parse_trak (GstQTDemux * qtdemux, GNode * trak)
         switch (fourcc) {
           case FOURCC_H264:
           case FOURCC_avc1:
+          case FOURCC_cwi1:
           case FOURCC_avc3:
           {
             gint len = QT_UINT32 (stsd_entry_data) - 0x56;
@@ -13873,6 +13875,12 @@ qtdemux_video_caps (GstQTDemux * qtdemux, QtDemuxStream * stream,
       caps = gst_caps_new_empty_simple ("video/x-apple-video");
       break;
     case FOURCC_H264:
+    case FOURCC_cwi1:
+      _codec ("H.264 / AVC");
+      caps = gst_caps_new_simple ("video/x-h264",
+          "stream-format", G_TYPE_STRING, "avc",
+          "alignment", G_TYPE_STRING, "au", NULL);
+      break;
     case FOURCC_avc1:
       _codec ("H.264 / AVC");
       caps = gst_caps_new_simple ("video/x-h264",
