@@ -13874,8 +13874,13 @@ qtdemux_video_caps (GstQTDemux * qtdemux, QtDemuxStream * stream,
       _codec ("Apple video");
       caps = gst_caps_new_empty_simple ("video/x-apple-video");
       break;
-    case FOURCC_H264:
     case FOURCC_cwi1:
+      _codec ("X-CWI_Pointcloud / RAW");
+      caps = gst_caps_new_simple ("video/x-raw",
+          "stream-format", G_TYPE_STRING, "raw",
+          "alignment", G_TYPE_STRING, "au", NULL);
+      break;
+    case FOURCC_H264:
       _codec ("H.264 / AVC");
       caps = gst_caps_new_simple ("video/x-h264",
           "stream-format", G_TYPE_STRING, "avc",
